@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -51,6 +53,21 @@ public class TodoController {
 	@PutMapping("{id}")
 	public ResponseEntity<TodoDto> updateTodo(@RequestBody TodoDto todoDto, @PathVariable("id") Long todoId) {
 		TodoDto updateTodo = todoService.updateTodo(todoDto, todoId);
+		return ResponseEntity.ok(updateTodo);
+	}
+	
+	//build delete todo rest api
+	@DeleteMapping("{id}")
+	public ResponseEntity<String> deleteTodo(@PathVariable("id") Long todoId){
+		todoService.deleteTodo(todoId);
+		return ResponseEntity.ok("Todo deleted successfull!");
+	}
+	
+	
+	//build complete todo rest api
+	@PatchMapping("{id}/complete")
+	public ResponseEntity<TodoDto> completeTodo(@PathVariable("id") Long todoId){
+		TodoDto updateTodo = todoService.completeTodo(todoId);
 		return ResponseEntity.ok(updateTodo);
 	}
 
