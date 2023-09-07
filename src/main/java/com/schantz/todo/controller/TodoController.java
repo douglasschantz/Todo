@@ -55,19 +55,25 @@ public class TodoController {
 		TodoDto updateTodo = todoService.updateTodo(todoDto, todoId);
 		return ResponseEntity.ok(updateTodo);
 	}
-	
-	//build delete todo rest api
+
+	// build delete todo rest api
 	@DeleteMapping("{id}")
-	public ResponseEntity<String> deleteTodo(@PathVariable("id") Long todoId){
+	public ResponseEntity<String> deleteTodo(@PathVariable("id") Long todoId) {
 		todoService.deleteTodo(todoId);
 		return ResponseEntity.ok("Todo deleted successfull!");
 	}
-	
-	
-	//build complete todo rest api
+
+	// build complete todo rest api
 	@PatchMapping("{id}/complete")
-	public ResponseEntity<TodoDto> completeTodo(@PathVariable("id") Long todoId){
+	public ResponseEntity<TodoDto> completeTodo(@PathVariable("id") Long todoId) {
 		TodoDto updateTodo = todoService.completeTodo(todoId);
+		return ResponseEntity.ok(updateTodo);
+	}
+
+	// build incomplete todo rest api
+	@PatchMapping("{id}/incomplete")
+	public ResponseEntity<TodoDto> inCompleteTodo(@PathVariable("id") Long todoId) {
+		TodoDto updateTodo = todoService.inCompleteTodo(todoId);
 		return ResponseEntity.ok(updateTodo);
 	}
 
