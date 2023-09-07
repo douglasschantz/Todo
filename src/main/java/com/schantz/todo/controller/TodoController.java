@@ -1,5 +1,7 @@
 package com.schantz.todo.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,5 +38,12 @@ public class TodoController {
 		return new ResponseEntity<>(todoDto, HttpStatus.OK);
 	}
 	
+	//Buil getAll todo rest api
+	@GetMapping
+	public ResponseEntity<List<TodoDto>> getAllTodos(){
+		List<TodoDto> todos = todoService.getAllTodos();
+		//return new ResponseEntity<>(todos, HttpStatus.OK);
+		return ResponseEntity.ok(todos);
+	}
 	
 }
