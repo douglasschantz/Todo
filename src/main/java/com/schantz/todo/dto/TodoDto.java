@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TodoDto {
-	
+
 	private Long id;
 	private String Title;
 	private String description;
